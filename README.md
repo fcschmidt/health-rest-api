@@ -1,4 +1,4 @@
-# Cheers Rest API  :woman_health_worker: :man_health_worker: :pill:
+# Health Rest API  :woman_health_worker: :man_health_worker: :pill:
 
 `$ code in progress.`
 
