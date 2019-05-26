@@ -1,7 +1,7 @@
 from health.app.ext.db import db
 
 
-class Prescriptions(db.Model):
+class Prescription(db.Model):
 
     __tablename__ = "prescriptions"
 
