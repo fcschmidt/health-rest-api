@@ -1,106 +1,67 @@
 """
 Custom Errors: status code and Message
 """
-from flask import jsonify
+
+
+class ErrorResponse(object):
+
+    def __init__(self, code: str, message: str):
+        self.message = message
+        self.code = code
+
+    def get_error_response(self):
+        error = {
+            "error": {
+                "message": self.message,
+                "code": self.code
+            }
+        }
+        return error
 
 
 def malformed_request():
-    """Error Response 01
-
-    Malformed Request 01
-    :return:
-    """
-    response = jsonify(
-        {
-            "error": {
-                "message": "malformed request",
-                "code": "01"
-            }
-        }
+    error_response = ErrorResponse(
+        "malformed request",
+        "01"
     )
-    return response
+    return error_response.get_error_response()
 
 
 def physician_not_found():
-    """Errors Response
-
-    Physician not found 02
-    :return:
-    """
-    response = jsonify(
-        {
-            "error": {
-                "message": "physician not found",
-                "code": "02"
-            }
-        }
+    error_response = ErrorResponse(
+        "physician not found",
+        "02"
     )
-    return response
+    return error_response.get_error_response()
 
 
 def patient_not_found():
-    """Error Response
-
-    Patient not found 03
-    :return:
-    """
-    response = jsonify(
-        {
-            "error": {
-                "message": "patient not found",
-                "code": "03"
-            }
-        }
+    error_response = ErrorResponse(
+        "patient not found",
+        "03"
     )
-    return response
+    return error_response.get_error_response()
 
 
 def metrics_service_not_available():
-    """Error Response 04
-
-    Metrics service not available
-    :return:
-    """
-    response = jsonify(
-        {
-            "error": {
-                "message": "metrics service not available",
-                "code": "04"
-            }
-        }
+    error_response = ErrorResponse(
+        "metrics service not available",
+        "04"
     )
-    return response
+    return error_response.get_error_response()
 
 
 def physicians_service_not_available():
-    """Error Response 05
-
-    Physicians service not available
-    :return:
-    """
-    response = jsonify(
-        {
-            "error": {
-                "message": "physicians service not available",
-                "code": "05"
-            }
-        }
+    error_response = ErrorResponse(
+        "physicians service not available",
+        "05"
     )
-    return response
+    return error_response.get_error_response()
 
 
 def patients_service_not_available():
-    """Error Response 06
-
-    Patients service not available
-    :return:
-    """
-    response = jsonify(
-        {
-            "error": {
-                "message": "patients service not available",
-                "code": "06"
-            }
-        }
+    error_response = ErrorResponse(
+        "patients service not available",
+        "06"
     )
-    return response
+    return error_response.get_error_response()
