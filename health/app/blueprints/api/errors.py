@@ -77,3 +77,12 @@ def patients_service_not_available():
         400
     )
     return error_response.get_error_response()
+
+
+def invalid_syntax():
+    error_response = ErrorResponse(
+        "07",
+        "parameter must be integer",
+        400
+    )
+    return error_response.get_error_response()
