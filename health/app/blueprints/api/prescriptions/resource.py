@@ -6,6 +6,7 @@ from health.services.consumer_services import ConsumerService
 from health.app.blueprints.api.errors import (
     patient_not_found,
     invalid_syntax,
+    physician_not_found
     )
 
 bp = Blueprint('prescriptions_api', __name__, url_prefix='/api/v2')
@@ -47,7 +48,11 @@ class PrescriptionsAPI(Resource):
         if patient_response == '404':
             return patient_not_found()
 
-        if patient_response == '400':
+        physician_response = self.service.get_physicians(physician['id'])
+        if physician_response == '404':
+            return physician_not_found()
+
+        if patient_response or physician_response == '400':
             return invalid_syntax()
 
 
