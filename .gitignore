@@ -108,4 +108,4 @@ venv.bak/
 coverage_html/
 migrations/
 garbage/
-health/authorization_keys.py
+health/authorization_keys_test.py
