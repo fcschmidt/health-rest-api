@@ -1,21 +1,10 @@
+from health.tests.dictionaries.physicians_errors import PHYSICIANS_NOT_FOUND, PHYSICIANS_INVALID_SYNTAX
+
 api_url = '/api/v2/prescriptions'
 
 
 def test_physicians_service_not_found(client):
-    test_data = {
-        'clinic': {
-            'id': 1
-        },
-        'physician': {
-            'id': 10
-        },
-        'patient': {
-            'id': 1
-        },
-        'text': 'Dipirona 1x ao dia'
-    }
-
-    response = client.post(api_url, json=test_data)
+    response = client.post(api_url, json=PHYSICIANS_NOT_FOUND)
     assert response.status_code == 404
 
     response_json = response.get_json()
@@ -29,20 +18,7 @@ def test_physicians_service_not_found(client):
 
 
 def test_physicians_service_invalid_syntax(client):
-    test_data = {
-        'clinic': {
-            'id': 1
-        },
-        'physician': {
-            'id': 'string'
-        },
-        'patient': {
-            'id': 1
-        },
-        'text': 'Dipirona 1x ao dia'
-    }
-
-    response = client.post(api_url, json=test_data)
+    response = client.post(api_url, json=PHYSICIANS_INVALID_SYNTAX)
     assert response.status_code == 400
 
     response_json = response.get_json()
@@ -54,7 +30,3 @@ def test_physicians_service_invalid_syntax(client):
     }
 
     assert response_json == expected
-
-
-def test_physicians_service_not_available(client):
-    pass
