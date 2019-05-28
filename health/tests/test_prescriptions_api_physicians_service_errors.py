@@ -3,9 +3,15 @@ api_url = '/api/v2/prescriptions'
 
 def test_physicians_service_not_found(client):
     test_data = {
-        'clinic': {'id': 1},
-        'physician': {'id': 10},
-        'patient': {'id': 1},
+        'clinic': {
+            'id': 1
+        },
+        'physician': {
+            'id': 10
+        },
+        'patient': {
+            'id': 1
+        },
         'text': 'Dipirona 1x ao dia'
     }
 
@@ -24,9 +30,15 @@ def test_physicians_service_not_found(client):
 
 def test_physicians_service_invalid_syntax(client):
     test_data = {
-        'clinic': {'id': 1},
-        'physician': {'id': 'string'},
-        'patient': {'id': 1},
+        'clinic': {
+            'id': 1
+        },
+        'physician': {
+            'id': 'string'
+        },
+        'patient': {
+            'id': 1
+        },
         'text': 'Dipirona 1x ao dia'
     }
 
@@ -37,7 +49,8 @@ def test_physicians_service_invalid_syntax(client):
     expected = {
         'error': {
             'code': '07',
-            'message': 'parameter must be integer'}
+            'message': 'parameter must be integer'
+        }
     }
 
     assert response_json == expected
