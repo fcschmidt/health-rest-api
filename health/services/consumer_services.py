@@ -59,7 +59,7 @@ class ConsumerService:
         r = RequestService(
             service_host,
             os.getenv('CLINICS_AUTH') or CLINICS_AUTH_TEST,
-            4
+            5
         )
         response = r.get_service()
 
@@ -72,7 +72,7 @@ class ConsumerService:
         r = RequestService(
             service_host,
             os.getenv('PHYSICIANS_AUTH') or PHYSICIANS_AUTH_TEST,
-            5
+            4
         )
 
         response = r.get_service()
