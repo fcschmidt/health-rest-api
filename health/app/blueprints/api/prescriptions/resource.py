@@ -9,6 +9,8 @@ from health.app.blueprints.api.errors import (
     physicians_service_not_available,
     metrics_service_not_available,
     invalid_syntax,
+    clinic_not_found,
+    timeout_request
     )
 
 
@@ -71,6 +73,9 @@ class PrescriptionsAPI(Resource):
             return invalid_syntax()
 
         if patient_response == '408':
+            return timeout_request('Patients')
+
+        if patient_response == '503':
             return patients_service_not_available()
 
         if physician_response == '404':
@@ -80,7 +85,23 @@ class PrescriptionsAPI(Resource):
             return invalid_syntax()
 
         if physician_response == '408':
+            return timeout_request('Physicians')
+
+        if physician_response == '503':
             return physicians_service_not_available()
+
+        if clinic_response == '404':
+            return clinic_not_found()
+
+        if clinic_response == '400':
+            return invalid_syntax()
+
+        clinic_name = clinic_response['data']['name']
+        clinic_id = clinic_response['data']['id']
+
+        if clinic_response == '408':
+            clinic_name = ''
+            clinic_id = clinic['id']
 
         prescription = PrescriptionModel(
             patient_id=patient['id'],
@@ -92,8 +113,8 @@ class PrescriptionsAPI(Resource):
         query_prescription = PrescriptionModel.get_prescription(prescription.id)
 
         data_compose = {
-            'clinic_id': clinic_response['data']['id'],
-            'clinic_name': clinic_response['data']['name'],
+            'clinic_id': clinic_id,
+            'clinic_name': clinic_name,
             'physician_id': physician_response['data']['id'],
             'physician_name': physician_response['data']['fullName'],
             'physician_crm': physician_response['data']['crm'],
@@ -110,6 +131,10 @@ class PrescriptionsAPI(Resource):
             return malformed_request()
 
         if metrics_response == '408':
+            query_prescription.delete()
+            return timeout_request('Metrics')
+
+        if metrics_response == '503':
             query_prescription.delete()
             return metrics_service_not_available()
 
