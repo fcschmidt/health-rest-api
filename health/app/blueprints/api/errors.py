@@ -55,7 +55,7 @@ def metrics_service_not_available():
     error_response = ErrorResponse(
         "04",
         "metrics service not available",
-        400
+        503
     )
     return error_response.get_error_response()
 
@@ -64,7 +64,7 @@ def physicians_service_not_available():
     error_response = ErrorResponse(
         "05",
         "physicians service not available",
-        400
+        503
     )
     return error_response.get_error_response()
 
@@ -73,7 +73,7 @@ def patients_service_not_available():
     error_response = ErrorResponse(
         "06",
         "patients service not available",
-        400
+        503
     )
     return error_response.get_error_response()
 
@@ -92,5 +92,14 @@ def clinic_not_found():
         "08",
         "clinic not found",
         404
+    )
+    return error_response.get_error_response()
+
+
+def timeout_request(service):
+    error_response = ErrorResponse(
+        "09",
+        f"Timeout {service}",
+        408
     )
     return error_response.get_error_response()
