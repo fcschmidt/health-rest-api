@@ -1,5 +1,5 @@
-import requests
 import os
+import requests
 
 from health.authorization_keys_test import (
     PATIENTS_AUTH_TEST,
@@ -46,6 +46,12 @@ class RequestService:
                 self.service_host,  headers=header, json=data, timeout=self.timeout)
         except requests.ConnectTimeout:
             return '408'
+
+        try:
+            if response.json()['errorCode'] == '4000':
+                return '400'
+        except KeyError:
+            pass
 
         return response.json()
 
