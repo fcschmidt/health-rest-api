@@ -123,7 +123,14 @@ class TestPrescriptionsAPI:
     Return Successfully status code and Content
     """
 
-    def test_prescription_successfully(self, client):
+    def test_prescriptions_api_integrate_metrics_service_error(self, client):
+        response = client.post(API_ENDPOINT, json=PRESCRIPTION_DATA)
+        assert response.status_code == 400
+
+        response_json = response.get_json()
+        assert response_json == EXPECTED_ERROR_01
+
+    def test_prescription_api_integrate_successfully(self, client):
         response = client.post(API_ENDPOINT, json=PRESCRIPTION_DATA)
         assert response.status_code == 201
 
