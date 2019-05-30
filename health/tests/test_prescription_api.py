@@ -10,23 +10,9 @@ from health.tests.dictionaries.prescriptions import (
 from health.tests.dictionaries.patients_errors import PATIENTS_NOT_FOUND, PATIENTS_INVALID_SYNTAX
 from health.tests.dictionaries.physicians_errors import PHYSICIANS_NOT_FOUND, PHYSICIANS_INVALID_SYNTAX
 from health.tests.dictionaries.clinics_errors import CLINICS_NOT_FOUND, CLINICS_INVALID_SYNTAX
-
+from health.tests.dictionaries.expected_errors import EXPECTED_ERROR_01, EXPECTED_ERROR_07
 
 API_ENDPOINT = '/api/v2/prescriptions'
-
-EXPECTED_ERROR_01 = {
-    'error': {
-        'code': '01',
-        'message': 'malformed request'
-    }
-}
-
-EXPECTED_ERROR_07 = {
-    'error': {
-        'code': '07',
-        'message': 'parameter must be integer'
-    }
-}
 
 
 class TestPrescriptionsAPINotContent:
