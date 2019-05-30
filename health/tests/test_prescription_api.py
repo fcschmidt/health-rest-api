@@ -7,7 +7,7 @@ from health.tests.dictionaries.prescriptions import (
 
 API_ENDPOINT = '/api/v2/prescriptions'
 
-expected = {
+EXPECTED = {
     'error': {
         'code': '01',
         'message': 'malformed request'
@@ -22,25 +22,25 @@ class TestPrescriptionsAPINotContent:
         assert response.status_code == 400
 
         response_json = response.get_json()
-        assert response_json == expected
+        assert response_json == EXPECTED
 
     def test_not_patient_content(self, client):
         response = client.post(API_ENDPOINT, json=PATIENTS_NOT_CONTENT)
         assert response.status_code == 400
 
         response_json = response.get_json()
-        assert response_json == expected
+        assert response_json == EXPECTED
 
     def test_not_physicians_content(self, client):
         response = client.post(API_ENDPOINT, json=PHYSICIANS_NOT_CONTENT)
         assert response.status_code == 400
 
         response_json = response.get_json()
-        assert response_json == expected
+        assert response_json == EXPECTED
 
     def test_not_text_content(self, client):
         response = client.post(API_ENDPOINT, json=TEXT_NOT_CONTENT)
         assert response.status_code == 400
 
         response_json = response.get_json()
-        assert response_json == expected
+        assert response_json == EXPECTED
