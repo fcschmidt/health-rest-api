@@ -1,11 +1,10 @@
-import os
 import requests
 
-from health.authorization_keys_test import (
-    PATIENTS_AUTH_TEST,
-    PHYSICIANS_AUTH_TEST,
-    CLINICS_AUTH_TEST,
-    METRICS_AUTH_TEST
+from health.authorization_keys import (
+    PATIENTS_AUTH,
+    PHYSICIANS_AUTH,
+    CLINICS_AUTH,
+    METRICS_AUTH
     )
 
 
@@ -26,6 +25,9 @@ class RequestService:
             response = self.request.get(self.service_host, headers=header, timeout=self.timeout)
         except requests.ConnectTimeout:
             return '408'
+
+        if response.status_code == 401:
+            return '401'
 
         if response.status_code == 404:
             return '404'
@@ -56,6 +58,9 @@ class RequestService:
         except KeyError:
             pass
 
+        if response.status_code == 401:
+            return '401'
+
         if response.status_code == 503:
             return '503'
 
@@ -70,11 +75,10 @@ class ConsumerService:
 
         r = RequestService(
             service_host,
-            os.getenv('CLINICS_AUTH') or CLINICS_AUTH_TEST,
+            CLINICS_AUTH,
             5
         )
         response = r.get_service()
-
         return response
 
     @staticmethod
@@ -83,12 +87,11 @@ class ConsumerService:
 
         r = RequestService(
             service_host,
-            os.getenv('PHYSICIANS_AUTH') or PHYSICIANS_AUTH_TEST,
+            PHYSICIANS_AUTH,
             4
         )
 
         response = r.get_service()
-
         return response
 
     @staticmethod
@@ -97,12 +100,11 @@ class ConsumerService:
 
         r = RequestService(
             service_host,
-            os.getenv('PATIENTS_AUTH') or PATIENTS_AUTH_TEST,
+            PATIENTS_AUTH,
             3
         )
 
         response = r.get_service()
-
         return response
 
     @staticmethod
@@ -111,11 +113,9 @@ class ConsumerService:
 
         r = RequestService(
             service_host,
-            os.getenv('METRICS_AUTH') or METRICS_AUTH_TEST,
+            METRICS_AUTH,
             6
         )
 
         response = r.post_service(data)
-
         return response
-
