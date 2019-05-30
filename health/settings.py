@@ -10,10 +10,10 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = DEBUG
 
-    PHYSICIANS_AUTH = os.getenv('PHYSICIANS_AUTH')
-    CLINICS_AUTH = os.getenv('CLINICS_AUTH')
-    PATIENTS_AUTH = os.getenv('PATIENTS_AUTH')
-    METRICS_AUTH = os.getenv('METRICS_AUTH')
+    # PHYSICIANS_AUTH = os.getenv('PHYSICIANS_AUTH')
+    # CLINICS_AUTH = os.getenv('CLINICS_AUTH')
+    # PATIENTS_AUTH = os.getenv('PATIENTS_AUTH')
+    # METRICS_AUTH = os.getenv('METRICS_AUTH')
 
 
 class Development(Config):
