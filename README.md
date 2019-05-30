@@ -12,9 +12,9 @@ Challenge for Python Developer.
 
 `$ cd health-rest-api`.
 
-**Adicionando as váriaveis de ambiente:**
+**Adicionando as variáveis de ambiente:**
 
-**Criando um arquivo `.env`** ou renomei o arquivo `.env_sample` para `.env`, com as informações abaixo.
+**Criando um arquivo `.env`** ou renomeie o arquivo `.env_sample` para `.env`, com as informações abaixo.
 
 ```text
 export FLASK_APP=manage.py
@@ -23,16 +23,25 @@ export FLASK_RUN_HOST='localhost'
 export FLASK_RUN_PORT=5000
 DEBUG=True
 DATABASE_URL=postgresql+psycopg2://username:password@localhost:5432/prescriptions
-
-PHYSICIANS_AUTH= Adicione a chave de autorização do serviço
-CLINICS_AUTH= Adicione a chave de autorização do serviço
-PATIENTS_AUTH= Adicione a chave de autorização do serviço
-METRICS_AUTH= Adicione a chave de autorização do serviço
 ```
 
 Sobre as configurações do SQLAlchemy: [ https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls]( https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls)
 
-Caso não seja inserido um caminho no path `DATABASE_URL` no arquivo `.env`. Por default ele irá criar uma base de dados usando SQLite, no caminho sqlite:////var/tmp/prescriptions_dev.sqlite.
+Caso não seja inserido um caminho no path `DATABASE_URL` no arquivo `.env`. 
+Por default ele irá criar uma base de dados usando SQLite, no caminho `sqlite:////var/tmp/prescriptions_dev.sqlite`.
+
+**Chaves de Autorização:**
+
+Renomeie o script de `authorization_keys.sample.py` para `authorization_keys_test.py`.
+
+Foi necessário criar um arquivo separado, pois ao rodar os tests, ele não captura variáveis de ambiente do arquivo `.env`
+
+```python
+PHYSICIANS_AUTH = 'Adicione a chave de autorização do serviço'
+CLINICS_AUTH = 'Adicione a chave de autorização do serviço'
+PATIENTS_AUTH = 'Adicione a chave de autorização do serviço'
+METRICS_AUTH = 'Adicione a chave de autorização do serviço'
+```
 
 **Crie um ambiente de desenvolvimento isolado com [virtualenv](https://virtualenv.pypa.io/en/latest/) ou [pip](https://pipenv.readthedocs.io/en/latest/)**
 
@@ -74,7 +83,9 @@ Ao iniciar a aplicação, um arquivo de `log` será criado na pasta logs.
 Algumas ferramentas e modulos para acessar os recurso da API:
 
 Via terminal usando [curl](https://curl.haxx.se/).
+
 Scripts em Python usando a lib [requests](http://docs.python-requests.org/en/master/).
+
 Ou, aplicações para testar APIs, [Postman](https://www.getpostman.com/) e [Insomnia](https://insomnia.rest/?utm_content=bufferd23bb&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer).
 
 ### Prescriptions API
@@ -91,15 +102,15 @@ Caso algo dê errado um erro será retornado. Abaixo têm um exemplo de possíve
 ```json
 {
 	"clinic": {
-    	"id": int
+    	"id": integer
     },
     "patients": {
-    	"id": int
+    	"id": integer
     },
     "physicians": {
-    	"id": int
+    	"id": integer
     },
-    "text": str
+    "text": string
 }
 ```
 
