@@ -15,6 +15,14 @@ class Prescription(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @staticmethod
+    def get_prescription(_id):
+        return Prescription.query.get(_id)
+
     def __repr__(self):
         return f'data(id={self.id}, clinic_id={self.clinic_id}, ' \
             f'physician_id={self.physician_id}, patient_id={self.patient_id}, text={self.text})'
