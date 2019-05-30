@@ -85,3 +85,12 @@ def invalid_syntax():
         400
     )
     return error_response.get_error_response()
+
+
+def clinic_not_found():
+    error_response = ErrorResponse(
+        "08",
+        "clinic not found",
+        404
+    )
+    return error_response.get_error_response()
