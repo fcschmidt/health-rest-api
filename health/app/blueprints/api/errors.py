@@ -103,3 +103,12 @@ def timeout_request(service):
         408
     )
     return error_response.get_error_response()
+
+
+def unauthorized():
+    error_response = ErrorResponse(
+        "10",
+        "Unauthorized",
+        401
+    )
+    return error_response.get_error_response()
