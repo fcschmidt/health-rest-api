@@ -17,7 +17,6 @@ class ErrorResponse(object):
                 "error": {
                     "code": self.code_error,
                     "message": self.message
-
                 }
             }
         )
