@@ -1,22 +1,21 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
 from flask_restful import Api, reqparse, Resource, fields
 
-from health.services.consumer_services import ConsumerService
-
 from health.app.blueprints.api.errors import (
+    malformed_request,
     patient_not_found,
     patients_service_not_available,
     physician_not_found,
     physicians_service_not_available,
     metrics_service_not_available,
-    malformed_request,
     invalid_syntax,
     )
 
+
+from health.services.consumer_services import ConsumerService
+
 from health.app.blueprints.api.models import Prescription as PrescriptionModel
-
 from health.app.blueprints.api.utils import serializer
-
 from health.app.blueprints.api.responses import resp_content_successfully
 
 bp = Blueprint('prescriptions_api', __name__, url_prefix='/api/v2')
