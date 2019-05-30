@@ -3,6 +3,6 @@ from health.app.blueprints.api.schemas import PrescriptionsSchemas
 prescriptions_schema = PrescriptionsSchemas()
 
 
-def serializer(content):
-    serialized = prescriptions_schema.dump(content, many=True).data
+def serializer(content, state):
+    serialized = prescriptions_schema.dump(content, many=state).data
     return serialized
