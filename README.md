@@ -101,8 +101,8 @@ Caso algo dê errado um erro será retornado. Abaixo têm um exemplo de possíve
 
 ```text
 {
-	"clinic": {
-    	"id": integer
+    "clinic": {
+        "id": integer
     },
     "patients": {
     	"id": integer
