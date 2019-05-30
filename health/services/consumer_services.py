@@ -33,6 +33,9 @@ class RequestService:
         if response.status_code == 400:
             return '400'
 
+        if response.status_code == 503:
+            return '503'
+
         return response.json()
 
     def post_service(self, data):
@@ -52,6 +55,9 @@ class RequestService:
                 return '400'
         except KeyError:
             pass
+
+        if response.status_code == 503:
+            return '503'
 
         return response.json()
 
