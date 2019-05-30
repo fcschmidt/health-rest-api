@@ -9,6 +9,7 @@ from health.tests.dictionaries.prescriptions import (
 
 from health.tests.dictionaries.patients_errors import PATIENTS_NOT_FOUND, PATIENTS_INVALID_SYNTAX
 from health.tests.dictionaries.physicians_errors import PHYSICIANS_NOT_FOUND, PHYSICIANS_INVALID_SYNTAX
+from health.tests.dictionaries.clinics_errors import CLINICS_NOT_FOUND, CLINICS_INVALID_SYNTAX
 
 
 API_ENDPOINT = '/api/v2/prescriptions'
@@ -17,6 +18,13 @@ EXPECTED_ERROR_01 = {
     'error': {
         'code': '01',
         'message': 'malformed request'
+    }
+}
+
+EXPECTED_ERROR_07 = {
+    'error': {
+        'code': '07',
+        'message': 'parameter must be integer'
     }
 }
 
@@ -75,14 +83,7 @@ class TestPrescriptionAPIIntegratePatientsService:
         assert response.status_code == 400
 
         response_json = response.get_json()
-        expected = {
-            'error': {
-                'code': '07',
-                'message': 'parameter must be integer'
-            }
-        }
-
-        assert response_json == expected
+        assert response_json == EXPECTED_ERROR_07
 
 
 class TestPrescriptionsAPIIntegratePhysiciansService:
@@ -106,14 +107,30 @@ class TestPrescriptionsAPIIntegratePhysiciansService:
         assert response.status_code == 400
 
         response_json = response.get_json()
+        assert response_json == EXPECTED_ERROR_07
+
+
+class TestPrescriptionsAPIIntegrateClinicsService:
+    """Test Prescription API Integrate Clinics Service, Return Errors Responses"""
+
+    def test_clinics_service_not_found(self, client):
+        response = client.post(API_ENDPOINT, json=CLINICS_NOT_FOUND)
+        assert response.status_code == 404
+
+        response_json = response.get_json()
         expected = {
             'error': {
-                'code': '07',
-                'message': 'parameter must be integer'
-            }
+                'code': '08',
+                'message': 'clinic not found'}
         }
-
         assert response_json == expected
+
+    def test_clinics_service_invalid_syntax(self, client):
+        response = client.post(API_ENDPOINT, json=CLINICS_INVALID_SYNTAX)
+        assert response.status_code == 400
+
+        response_json = response.get_json()
+        assert response_json == EXPECTED_ERROR_07
 
 
 @pytest.mark.usefixtures('session')
