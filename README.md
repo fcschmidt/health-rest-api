@@ -99,7 +99,7 @@ Caso algo dê errado um erro será retornado. Abaixo têm um exemplo de possíve
 
 **Payload Post method:**
 
-```json
+```text
 {
 	"clinic": {
     	"id": integer
