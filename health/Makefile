@@ -11,12 +11,12 @@ report:
 	coverage report
 	coverage html -d coverage_html
 
-install:
-	@echo 'Create environment and Install dependences'
-	@virtualenv -p python3.6 .venv
-	@source .venv/bin/activate
-	pip install --upgrade pip
-	pip install -r requirements.txt
+#install:
+#	@echo 'Create environment and Install dependences'
+#	@virtualenv -p python3.6 .venv
+#	@source .venv/bin/activate
+#	pip install --upgrade pip
+#	pip install -r requirements.txt
 
 migrate:
 	@echo 'Created Migrations'
