@@ -10,7 +10,7 @@ from health.tests.dictionaries.prescriptions_data_test import (
 from health.tests.dictionaries.patients_data_test import PATIENTS_NOT_FOUND, PATIENTS_INVALID_SYNTAX
 from health.tests.dictionaries.physicians_data_test import PHYSICIANS_NOT_FOUND, PHYSICIANS_INVALID_SYNTAX
 from health.tests.dictionaries.clinics_data_test import CLINICS_NOT_FOUND, CLINICS_INVALID_SYNTAX
-from health.tests.dictionaries.expected_errors import (
+from health.tests.dictionaries.expected_responses import (
     EXPECTED_ERROR_01,
     EXPECTED_ERROR_02,
     EXPECTED_ERROR_03,
