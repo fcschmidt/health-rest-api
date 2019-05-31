@@ -109,3 +109,6 @@ coverage_html/
 migrations/
 garbage/
 health/authorization_keys.py
+health/logs/app.log
+health/logs/.fuse
+
