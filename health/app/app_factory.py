@@ -41,7 +41,7 @@ def register_extensions(app):
 def register_logs(app):
     """Register logs."""
     logging.basicConfig(
-        filename='logs/app.logs',
+        filename='logs/app.log',
         level=logging.DEBUG,
         format='[%(asctime)s]:%(levelname)s:%(message)s'
     )
