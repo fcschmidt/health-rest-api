@@ -39,4 +39,4 @@ run:
 	flask run
 
 clean:
-	rm -rf migrations .coverage coverage_html .pytest_cache
+	rm -rf migrations .coverage coverage_html .pytest_cache logs/app.log
