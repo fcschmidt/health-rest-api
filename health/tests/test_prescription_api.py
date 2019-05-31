@@ -1,5 +1,5 @@
 import pytest
-from health.tests.dictionaries.prescriptions import (
+from health.tests.dictionaries.prescriptions_data_test import (
     CLINIC_NOT_CONTENT,
     PATIENTS_NOT_CONTENT,
     PHYSICIANS_NOT_CONTENT,
@@ -7,9 +7,9 @@ from health.tests.dictionaries.prescriptions import (
     PRESCRIPTION_DATA
     )
 
-from health.tests.dictionaries.patients_errors import PATIENTS_NOT_FOUND, PATIENTS_INVALID_SYNTAX
-from health.tests.dictionaries.physicians_errors import PHYSICIANS_NOT_FOUND, PHYSICIANS_INVALID_SYNTAX
-from health.tests.dictionaries.clinics_errors import CLINICS_NOT_FOUND, CLINICS_INVALID_SYNTAX
+from health.tests.dictionaries.patients_data_test import PATIENTS_NOT_FOUND, PATIENTS_INVALID_SYNTAX
+from health.tests.dictionaries.physicians_data_test import PHYSICIANS_NOT_FOUND, PHYSICIANS_INVALID_SYNTAX
+from health.tests.dictionaries.clinics_data_test import CLINICS_NOT_FOUND, CLINICS_INVALID_SYNTAX
 from health.tests.dictionaries.expected_errors import EXPECTED_ERROR_01, EXPECTED_ERROR_07
 
 API_ENDPOINT = '/api/v2/prescriptions'
