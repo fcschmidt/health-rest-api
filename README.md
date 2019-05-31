@@ -61,12 +61,15 @@ Prefiro o virtualenv.
 
 `health-rest-api/health$ pip install -r requirements.txt`.
 
+**Criando o Banco de Dados:**
+
+`$ createdb prescriptions`
 
 ## Gerando as Migrações
 
 ```text
 flask db init
-flask db migrate -m "Created Migrations."
+flask db migrate -m "Generated Migrations."
 flask db upgrade
 ```
 
