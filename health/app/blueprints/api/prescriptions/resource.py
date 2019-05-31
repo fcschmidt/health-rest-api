@@ -66,11 +66,12 @@ class PrescriptionsAPI(Resource):
         if response_clinics_parser:
             return response_clinics_parser
 
-        clinic_name = clinics_response['data']['name']
-        clinic_id = clinics_response['data']['id']
         if clinics_response == '408':
             clinic_name = ''
             clinic_id = clinic['id']
+        else:
+            clinic_name = clinics_response['data']['name']
+            clinic_id = clinics_response['data']['id']
 
         prescription = PrescriptionModel(
             patient_id=patient['id'],
