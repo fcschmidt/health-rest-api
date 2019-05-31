@@ -10,7 +10,14 @@ from health.tests.dictionaries.prescriptions_data_test import (
 from health.tests.dictionaries.patients_data_test import PATIENTS_NOT_FOUND, PATIENTS_INVALID_SYNTAX
 from health.tests.dictionaries.physicians_data_test import PHYSICIANS_NOT_FOUND, PHYSICIANS_INVALID_SYNTAX
 from health.tests.dictionaries.clinics_data_test import CLINICS_NOT_FOUND, CLINICS_INVALID_SYNTAX
-from health.tests.dictionaries.expected_errors import EXPECTED_ERROR_01, EXPECTED_ERROR_07
+from health.tests.dictionaries.expected_errors import (
+    EXPECTED_ERROR_01,
+    EXPECTED_ERROR_02,
+    EXPECTED_ERROR_03,
+    EXPECTED_ERROR_07,
+    EXPECTED_ERROR_08,
+    EXPECTED_DATA_SUCCESSFULLY
+    )
 
 API_ENDPOINT = '/api/v2/prescriptions'
 
@@ -55,14 +62,7 @@ class TestPrescriptionAPIIntegratePatientsService:
         assert response.status_code == 404
 
         response_json = response.get_json()
-        expected = {
-            'error': {
-                'code': '03',
-                'message': 'patient not found'
-            }
-        }
-
-        assert response_json == expected
+        assert response_json == EXPECTED_ERROR_03
 
     def test_patients_service_invalid_syntax(self, client):
         response = client.post(API_ENDPOINT, json=PATIENTS_INVALID_SYNTAX)
@@ -80,13 +80,7 @@ class TestPrescriptionsAPIIntegratePhysiciansService:
         assert response.status_code == 404
 
         response_json = response.get_json()
-        expected = {
-            'error': {
-                'code': '02',
-                'message': 'physician not found'}
-        }
-
-        assert response_json == expected
+        assert response_json == EXPECTED_ERROR_02
 
     def test_physicians_service_invalid_syntax(self, client):
         response = client.post(API_ENDPOINT, json=PHYSICIANS_INVALID_SYNTAX)
@@ -104,12 +98,7 @@ class TestPrescriptionsAPIIntegrateClinicsService:
         assert response.status_code == 404
 
         response_json = response.get_json()
-        expected = {
-            'error': {
-                'code': '08',
-                'message': 'clinic not found'}
-        }
-        assert response_json == expected
+        assert response_json == EXPECTED_ERROR_08
 
     def test_clinics_service_invalid_syntax(self, client):
         response = client.post(API_ENDPOINT, json=CLINICS_INVALID_SYNTAX)
@@ -126,25 +115,9 @@ class TestPrescriptionsAPI:
     Return Successfully status code and Content
     """
 
-    # def test_prescriptions_api_integrate_metrics_service_error(self, client):
-    #     response = client.post(API_ENDPOINT, json=PRESCRIPTION_DATA)
-    #     assert response.status_code == 400
-    #
-    #     response_json = response.get_json()
-    #     assert response_json == EXPECTED_ERROR_01
-
     def test_prescription_api_integrate_successfully(self, client):
         response = client.post(API_ENDPOINT, json=PRESCRIPTION_DATA)
         assert response.status_code == 201
 
         response_json = response.get_json()
-        expected = {
-            'data': {
-                'clinic_id': 1,
-                'patient_id': 1,
-                'physician_id': 1,
-                'id': 1,
-                'text': 'Dipirona 1x ao dia'
-            }
-        }
-        assert response_json == expected
+        assert response_json == EXPECTED_DATA_SUCCESSFULLY
