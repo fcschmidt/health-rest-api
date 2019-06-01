@@ -8,7 +8,7 @@ from health.authorization_keys import (
     )
 
 
-class RequestService:
+class ServiceRequest:
 
     def __init__(self, host, authorization, timeout):
         self.service_host = host
@@ -67,13 +67,13 @@ class RequestService:
         return response.json()
 
 
-class ConsumerService:
+class ServiceConsumer:
 
     @staticmethod
     def get_clinic(_id: int):
         service_host = f"https://agile-earth-43435.herokuapp.com/v1/clinics/{_id}"
 
-        r = RequestService(
+        r = ServiceRequest(
             service_host,
             CLINICS_AUTH,
             5
@@ -85,7 +85,7 @@ class ConsumerService:
     def get_physicians(_id: int):
         service_host = f"https://cryptic-scrubland-98389.herokuapp.com/v2/physicians/{_id}"
 
-        r = RequestService(
+        r = ServiceRequest(
             service_host,
             PHYSICIANS_AUTH,
             4
@@ -98,7 +98,7 @@ class ConsumerService:
     def get_patients(_id: int):
         service_host = f"https://limitless-shore-81569.herokuapp.com/v3/patients/{_id}"
 
-        r = RequestService(
+        r = ServiceRequest(
             service_host,
             PATIENTS_AUTH,
             3
@@ -111,7 +111,7 @@ class ConsumerService:
     def post_metrics(data: dict):
         service_host = 'https://mysterious-island-73235.herokuapp.com/api/metrics'
 
-        r = RequestService(
+        r = ServiceRequest(
             service_host,
             METRICS_AUTH,
             6

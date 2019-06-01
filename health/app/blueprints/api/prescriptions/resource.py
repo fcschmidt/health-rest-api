@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api, reqparse, Resource, fields
 
-from health.services.consumer_services import ConsumerService
+from health.services.services_consumer import ServiceConsumer
 
 from health.app.blueprints.api.models import Prescription as PrescriptionModel
 
@@ -38,7 +38,7 @@ class PrescriptionsAPI(Resource):
 
     def __init__(self):
         self.args = parser.parse_args()
-        self.service = ConsumerService()
+        self.service = ServiceConsumer()
 
     def post(self):
         clinic = self.args['clinic']
