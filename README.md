@@ -32,7 +32,7 @@ Por default ele irá criar uma base de dados usando SQLite, no caminho `sqlite:/
 
 **Chaves de Autorização:**
 
-Renomeie o script de `authorization_keys.sample.py` para `authorization_keys_test.py`.
+Renomeie o script de `authorization_keys.sample.py` para `authorization_keys.py`.
 
 Foi necessário criar um arquivo separado, pois ao rodar os tests, ele não captura variáveis de ambiente do arquivo `.env`
 
@@ -43,7 +43,7 @@ PATIENTS_AUTH = 'Adicione a chave de autorização do serviço'
 METRICS_AUTH = 'Adicione a chave de autorização do serviço'
 ```
 
-**Crie um ambiente de desenvolvimento isolado com [virtualenv](https://virtualenv.pypa.io/en/latest/) ou [pip](https://pipenv.readthedocs.io/en/latest/)**
+**Crie um ambiente de desenvolvimento isolado com [virtualenv](https://virtualenv.pypa.io/en/latest/) ou [pipenv](https://pipenv.readthedocs.io/en/latest/)**
 
 Prefiro o virtualenv.
 
@@ -62,6 +62,8 @@ Prefiro o virtualenv.
 `health-rest-api/health$ pip install -r requirements.txt`.
 
 **Criando o Banco de Dados:**
+
+Este comando serve apenas se você estiver utilizando o bando de dados `PostgreSQL`.
 
 `$ createdb prescriptions`
 
